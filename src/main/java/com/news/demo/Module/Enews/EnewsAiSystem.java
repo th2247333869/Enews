@@ -1,5 +1,8 @@
 package com.news.demo.Module.Enews;
 
+import com.news.demo.Utils.OrderCodeFactoryUtils;
+
+import java.util.HashMap;
 import java.util.Map;
 /**
 * @Description:    自动爬虫 抓取新闻事件
@@ -31,6 +34,13 @@ public class EnewsAiSystem {
                 "额外氧气供给的情况下，登顶后只能坚持几分钟的时间，但由于拥挤下山的时间被推迟，" +
                 "加上等候时间过长、体力消耗太大等因素，不少人将生命留在了珠峰。目前，“大堵车”已致" +
                 "十余人死亡。</p>");
+        enews.seteCode(OrderCodeFactoryUtils.getCommonCode(1,"C"));
+        enews.seteAuthor("Tian");
+        enews.seteOrigin("中华新闻网");
+
+        Map<String,Enews> enewsMap = new HashMap<>();
+        enewsMap.put("eNews",enews);
+        return  enewsMap;
     }
 
 }
