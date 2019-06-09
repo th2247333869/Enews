@@ -1,5 +1,6 @@
-package com.news.demo.Module.Enews;
+package com.news.demo.module.Enews;
 
+import com.news.demo.module.Entity.Enews;
 import com.news.demo.Utils.OrderCodeFactoryUtils;
 
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class EnewsAiSystem {
     * @UpdateRemark:   修改内容
     * @Version:        1.0
     */
-    public Map<String,Enews> create(){
+    public Map<String, Enews> create(){
         //模拟数据
         Enews enews = new Enews();
         enews.seteHead("喜马拉雅山又现攀峰意外:登山团失踪 8人生死未卜");

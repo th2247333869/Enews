@@ -1,4 +1,4 @@
-package com.news.demo.Module.Enews;
+package com.news.demo.module.Entity;
 
 public class Enews {
 

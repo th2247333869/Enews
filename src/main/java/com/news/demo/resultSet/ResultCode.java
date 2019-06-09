@@ -1,4 +1,4 @@
-package com.news.demo.ResultSet;
+package com.news.demo.resultSet;
 
 /**
 * @Description:    异常状态码

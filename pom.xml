@@ -43,6 +43,30 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
 
@@ -54,5 +78,25 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <!-- windows环境 -->
+            <id>win</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <pom.office.home>C:\Program Files (x86)\LibreOffice</pom.office.home>
+            </properties>
+        </profile>
+        <profile>
+            <!-- linux环境 -->
+            <id>linux</id>
+            <properties>
+                <pom.office.home>/opt/libreoffice6.0</pom.office.home>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

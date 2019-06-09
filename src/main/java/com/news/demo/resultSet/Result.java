@@ -1,8 +1,4 @@
-package com.news.demo.ResultSet;
-
-import com.alibaba.fastjson.JSONObject;
-
-import java.util.Map;
+package com.news.demo.resultSet;
 
 /**
 * @Description:    返回接口规范
