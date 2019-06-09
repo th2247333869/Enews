@@ -5,6 +5,7 @@ import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
 import net.minidev.json.JSONObject;
 
+import javax.servlet.ServletException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -90,7 +91,7 @@ public class JwtUtils {
 
             //判断token是否过期
             if (jsonObject.containsKey("exp")) {
-                Long expTime = Long.valueOf(jsonObject.get("exp").toString());
+                Long expTime = Long.valueOf((String) jsonObject.get("exp"));
                 Long nowTime = new Date().getTime();
                 //判断是否过期
                 if (nowTime > expTime) {
@@ -106,4 +107,6 @@ public class JwtUtils {
         return resultMap;
 
     }
+
+
 }

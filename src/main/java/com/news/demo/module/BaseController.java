@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.news.demo.model.User;
 import com.news.demo.resultSet.Result;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +18,9 @@ import java.util.Map;
 * @Version:        1.0
 */
 public class BaseController {
+
+    private  static long TOKEN_EXP = 600000;//过期时间,测试使用60秒*60*3 过期时间为3小时
+
 
     public String ToJson(Result result){
         return JSONObject.toJSONString(result);
@@ -51,5 +55,11 @@ public class BaseController {
         }else{
             return false;
         }
+    }
+
+    public String getTokenExp(){
+
+        return String.valueOf(new Date().getTime()+TOKEN_EXP);
+
     }
 }

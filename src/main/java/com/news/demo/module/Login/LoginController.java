@@ -48,6 +48,8 @@ public class LoginController extends BaseController {
             try {
                 payloadMap = new HashMap<>();//创建当前toke
                 payloadMap.put("user",u.getUserName());
+                payloadMap.put("exp",getTokenExp());//设置过期时间
+
                 token = JwtUtils.creatToken(payloadMap);
             }catch (JOSEException e){
                 return ToMap(new Result(ResultCode.LOGINEVER,"登录失败",null));
@@ -75,4 +77,10 @@ public class LoginController extends BaseController {
         return "测试成功";
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public String test(@RequestParam String username,@RequestParam String pwd) throws Exception{
+
+        return "测试成功";
+    }
 }
