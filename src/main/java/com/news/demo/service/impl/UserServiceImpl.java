@@ -24,7 +24,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User login(String username,String pwd) {
 
-        return userMapper.login(username,pwd);
+        return userMapper.selectUserByNameAndPwd(username,pwd);
 
+    }
+
+    @Override
+    public Integer createUser(String deviceId) {
+        User user = new User();
+        Integer result = 0;
+        try {
+            //初始默认用户名为用户设备ID 密码为0000
+            user.setUserName(deviceId);
+            user.setDeviceId(deviceId);
+            user.setUserPwd("0000");
+            result = userMapper.insert(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+        return result;
     }
 }
