@@ -1,5 +1,6 @@
 package com.news.demo.module.Login;
 
+import com.news.demo.Utils.OrderCodeFactoryUtils;
 import com.news.demo.model.User;
 import com.news.demo.module.BaseController;
 import com.news.demo.resultSet.Result;
@@ -49,7 +50,6 @@ public class LoginController extends BaseController {
                 payloadMap = new HashMap<>();//创建当前toke
                 payloadMap.put("user",u.getUserName());
                 payloadMap.put("exp",getTokenExp());//设置过期时间
-
                 token = JwtUtils.creatToken(payloadMap);
             }catch (JOSEException e){
                 return ToMap(new Result(ResultCode.LOGINEVER,"登录失败",null));
@@ -61,7 +61,43 @@ public class LoginController extends BaseController {
         return ToMap(new Result(ResultCode.SUCCESS,"登录成功",token));
     }
 
+    /**
+     * @Description:    登录web
+     * @UpdateUser:     GEBILAOHU
+     * @UpdateDate:     19.6.2
+     * @UpdateRemark:   无
+     * @Version:        1.0
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/wxlogin", method = RequestMethod.GET)
+    public Map loginWX(@RequestParam String code){
+        String openid = getWxOpenId(code);
+        if(userService.createUserByOpenId(openid)== 0){
+            return ToMap(new Result(ResultCode.EVER,"插入数据错误",null));
+        }else{
+            return ToMap(new Result(ResultCode.SUCCESS,"插入数据成功",null));
+        }
+    }
 
+    /**
+     * @Description:    保存用户唯一识别码
+     * @UpdateUser:     GEBILAOHU
+     * @UpdateDate:     19.6.2
+     * @UpdateRemark:   无
+     * @Version:        1.0
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/creatDeviceId", method = RequestMethod.POST)
+    public Map creatDeviceId(@RequestParam String deviceId){
+        if(deviceId == null || "".equals(deviceId)){
+            deviceId = "0000";
+        }
+        if(userService.createUser(deviceId) == 0){
+            return ToMap(new Result(ResultCode.EVER,"插入数据错误",null));
+        }else{
+            return ToMap(new Result(ResultCode.SUCCESS,"插入数据成功",null));
+        }
+    }
 
     /**
      * @Description:    测试
@@ -79,7 +115,7 @@ public class LoginController extends BaseController {
 
     @CrossOrigin
     @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public String test(@RequestParam String username,@RequestParam String pwd) throws Exception{
+    public String test2() throws Exception{
 
         return "测试成功";
     }

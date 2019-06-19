@@ -54,6 +54,12 @@ public class User extends Model<User> {
     @TableId(value = "user_id", type = IdType.AUTO)
     private Integer userId;
 
+    /**
+     * 用户设备标识
+     */
+    @TableId(value = "user_deviceId")
+    private String deviceId;
+
 
     @Override
     protected Serializable pkVal() {
@@ -106,5 +112,13 @@ public class User extends Model<User> {
 
     public void setUserPwd(String userPwd) {
         this.userPwd = userPwd;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }

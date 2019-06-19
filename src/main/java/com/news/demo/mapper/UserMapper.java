@@ -23,5 +23,16 @@ public interface UserMapper extends BaseMapper<User> {
      * 对于多个参数来说，每个参数之前都要加上@Param注解，
      * 要不然会找不到对应的参数进而报错
      */
-    public User login(@Param("name")String name, @Param("pwd")String pwd);
+    User selectUserByNameAndPwd(@Param("name")String name, @Param("pwd")String pwd);
+
+    @Select("select * from t_user t where t.device_id = #{openId}")
+    /**
+    * @Description:    2.0版本把设备id替换为openid
+    * @UpdateUser:     GEBILAOHU
+    * @UpdateDate:
+    * @UpdateRemark:   修改内容
+    * @Version:        2.0
+    */
+    User selectUserByOpenId(@Param("openId") String openId);
+
 }

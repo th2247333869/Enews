@@ -1,6 +1,7 @@
 package com.news.demo.module;
 
 import com.alibaba.fastjson.JSONObject;
+import com.news.demo.Utils.WeChatUtil;
 import com.news.demo.model.User;
 import com.news.demo.resultSet.Result;
 
@@ -61,5 +62,20 @@ public class BaseController {
 
         return String.valueOf(new Date().getTime()+TOKEN_EXP);
 
+    }
+
+    public String getWxOpenId(String code){
+
+        // 根据小程序穿过来的code想这个url发送请求
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + Final.APPID + "&secret=" + Final.SECRET + "&js_code=" + code + "&grant_type=authorization_code";
+        // 发送请求，返回Json字符串
+        String str = WeChatUtil.httpRequest(url, "GET", null);
+        // 转成Json对象 获取openid
+        JSONObject jsonObject = JSONObject.parseObject(str);
+
+        // 我们需要的openid，在一个小程序中，openid是唯一的
+        String openid = jsonObject.get("openid").toString();
+
+        return  openid;
     }
 }

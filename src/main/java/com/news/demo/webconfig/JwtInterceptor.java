@@ -27,7 +27,7 @@ public class JwtInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String authHeader = request.getHeader("Authorization");
+       /* String authHeader = request.getHeader("Authorization");
         Enumeration<String> headerNames = request.getHeaderNames();
 
         // 从方法处理器中获取出要调用的方法
@@ -42,7 +42,8 @@ public class JwtInterceptor implements HandlerInterceptor {
             return  true;
         } catch (Exception e) {
             throw new ServletException(e.getMessage());
-        }
+        }*/
+       return true;
     }
 
 

@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 /**
  * <p>
  * 用户表 服务实现类
@@ -43,5 +45,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return 0;
         }
         return result;
+    }
+
+    @Override
+    public Integer createUserByOpenId(String openid) {
+        //1.查询是否已经创建了openid
+        User user= userMapper.selectUserByOpenId(openid);
+        //校验user
+        if(!Objects.nonNull(user)){
+            return this.createUser(openid);
+        }else{
+            return 0;
+        }
     }
 }

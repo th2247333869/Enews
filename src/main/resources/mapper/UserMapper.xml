@@ -10,11 +10,12 @@
         <result column="gender" property="gender" />
         <result column="user_name" property="userName" />
         <result column="user_pwd" property="userPwd" />
+        <result column="device_id" property="deviceId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        creat_time, birthday, gender, user_name, user_id,user_pwd
+        creat_time, birthday, gender, user_name, user_id,user_pwd,device_id
     </sql>
 
 </mapper>

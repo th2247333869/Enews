@@ -44,7 +44,9 @@ public class WebConfig  implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //添加拦截器
-        registry.addInterceptor(myInterceptor()).addPathPatterns("/**").excludePathPatterns("/login", "/register");
+        registry.addInterceptor(myInterceptor()).addPathPatterns("/**")
+                //.excludePathPatterns("/login", "/register","/creatDeviceId","/test","/wxlogin");
+                .excludePathPatterns("/*");
     }
 
     @Override
