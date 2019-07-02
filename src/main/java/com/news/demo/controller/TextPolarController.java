@@ -39,11 +39,9 @@ public class TextPolarController {
         params.put("app_id", CONFIG.getAppID());
         params.put("time_stamp", new Date().getTime() / 1000);
         params.put("nonce_str", Math.random());
-        params.put("text", "千山真好看");
+        params.put("text", "结婚了");
         params.put("sign", TencentAISignHolder.getSignature(params));
-        ResponseEntity<TextPolar> entity = HttpRequestUtils.post(
-                "https://api.ai.qq.com/fcgi-bin/nlp/nlp_textpolar",
-                params, null);
+        ResponseEntity<TextPolar> entity = HttpRequestUtils.post(params, null);
         System.out.println(entity);
         long end = System.currentTimeMillis();
         System.out.println("请求时间：" + (end - start));

@@ -78,4 +78,12 @@ public class BaseController {
 
         return  openid;
     }
+
+    public Integer checkGenger(String sex){
+        if("男".equals(sex)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }

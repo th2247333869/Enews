@@ -34,7 +34,7 @@ public final class HttpRequestUtils<T> {
     // Public or Protected Methods
     // ================================================================
 
-    public static <T> ResponseEntity<T> post(String url, Map<String, Object> param,
+    public static <T> ResponseEntity<T> post(Map<String, Object> param,
                                              Map<String, Object> header) {
         HttpResponse response =
                 HttpRequest.post(TencentAPI.NLP_TEXTPOLAR).form(param)

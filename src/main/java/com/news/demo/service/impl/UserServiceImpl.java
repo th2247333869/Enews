@@ -31,14 +31,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Integer createUser(String deviceId) {
-        User user = new User();
+    public Integer createUser(User user) {
         Integer result = 0;
         try {
-            //初始默认用户名为用户设备ID 密码为0000
-            user.setUserName(deviceId);
-            user.setDeviceId(deviceId);
-            user.setUserPwd("0000");
             result = userMapper.insert(user);
         }catch (Exception e){
             e.printStackTrace();
@@ -48,12 +43,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Integer createUserByOpenId(String openid) {
+    public Integer createUserByOpenId(User user) {
         //1.查询是否已经创建了openid
-        User user= userMapper.selectUserByOpenId(openid);
+        User u= userMapper.selectUserByOpenId(user.getDeviceId());
         //校验user
-        if(!Objects.nonNull(user)){
-            return this.createUser(openid);
+        if(!Objects.nonNull(u)){
+            return this.createUser(user);
         }else{
             return 0;
         }

@@ -16,7 +16,7 @@ public interface UserService extends IService<User> {
 
     User login(String username,String pwd);
 
-    Integer createUser(String deviceId);
+    Integer createUser(User user);
 
-    Integer createUserByOpenId(String openid);
+    Integer createUserByOpenId(User user);
 }

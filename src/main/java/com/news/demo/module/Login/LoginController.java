@@ -1,6 +1,7 @@
 package com.news.demo.module.Login;
 
 import com.news.demo.Utils.OrderCodeFactoryUtils;
+import com.news.demo.Utils.commonUtils;
 import com.news.demo.model.User;
 import com.news.demo.module.BaseController;
 import com.news.demo.resultSet.Result;
@@ -70,9 +71,11 @@ public class LoginController extends BaseController {
      */
     @CrossOrigin
     @RequestMapping(value = "/wxlogin", method = RequestMethod.GET)
-    public Map loginWX(@RequestParam String code){
+    public Map loginWX(@RequestParam String code,@RequestParam String headurl,@RequestParam String nickname
+                        ,@RequestParam String sex,@RequestParam String country,@RequestParam String province,@RequestParam String city){
         String openid = getWxOpenId(code);
-        if(userService.createUserByOpenId(openid)== 0){
+        User user = new User(null,checkGenger(sex),nickname,openid,openid, commonUtils.getNow());
+        if(userService.createUserByOpenId(user)== 0){
             return ToMap(new Result(ResultCode.EVER,"插入数据错误",null));
         }else{
             return ToMap(new Result(ResultCode.SUCCESS,"插入数据成功",null));
@@ -92,7 +95,7 @@ public class LoginController extends BaseController {
         if(deviceId == null || "".equals(deviceId)){
             deviceId = "0000";
         }
-        if(userService.createUser(deviceId) == 0){
+        if(userService.createUser(null) == 0){
             return ToMap(new Result(ResultCode.EVER,"插入数据错误",null));
         }else{
             return ToMap(new Result(ResultCode.SUCCESS,"插入数据成功",null));
@@ -109,14 +112,12 @@ public class LoginController extends BaseController {
     @CrossOrigin
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() throws Exception{
-
         return "测试成功";
     }
 
     @CrossOrigin
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public String test2() throws Exception{
-
         return "测试成功";
     }
 }

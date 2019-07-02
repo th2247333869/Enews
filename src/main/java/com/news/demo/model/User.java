@@ -60,6 +60,16 @@ public class User extends Model<User> {
     @TableId(value = "user_deviceId")
     private String deviceId;
 
+    public User(){};
+
+    public User(Date birthday, Integer gender, String userName, String userPwd, String deviceId,Date date) {
+        this.birthday = birthday;
+        this.gender = gender;
+        this.userName = userName;
+        this.userPwd = userPwd;
+        this.deviceId = deviceId;
+        this.creatTime = date;
+    }
 
     @Override
     protected Serializable pkVal() {
