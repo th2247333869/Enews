@@ -1,5 +1,7 @@
 package com.news.demo.module;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.news.demo.Utils.WeChatUtil;
 import com.news.demo.model.User;
@@ -7,6 +9,7 @@ import com.news.demo.resultSet.Result;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -86,4 +89,10 @@ public class BaseController {
             return 0;
         }
     }
+
+    public JSONArray getJsonArray(List list){
+        JSONArray array= JSONArray.parseArray(JSON.toJSONString(list));
+        return array;
+    }
+
 }
