@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Demo project for Spring Boot</description>
-
+    <packaging>war</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -89,6 +89,12 @@
             <artifactId>tencentcloud-sdk-java</artifactId>
             <version>3.0.72</version><!-- 注：这里只是示例版本号，请到 https://mvnrepository.com/artifact/com.tencentcloudapi/tencentcloud-sdk-java 获取最新版本号 -->
         </dependency>
+
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 
 

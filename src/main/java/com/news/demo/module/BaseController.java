@@ -95,4 +95,9 @@ public class BaseController {
         return array;
     }
 
+    public String getSingleJsonValue(String json,String key){
+        JSONObject object=JSONObject.parseObject(json);
+        return object.getString(key);
+    }
+
 }

@@ -33,7 +33,7 @@ public class MpGenerator {
     //作者
     private static String authorName = "GEBILAOHU";
     //要生成的表名
-    private static String[] tables = {"b_commdity"};
+    private static String[] tables = {"b_specific_goods"};
     //table前缀
     private static String prefix = "b_";
 

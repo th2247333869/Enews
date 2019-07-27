@@ -13,11 +13,12 @@
         <result column="user_id" property="userId" />
         <result column="compliments" property="compliments" />
         <result column="date" property="date" />
+        <result column="code" property="code" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, type, state, image_url, title, user_id, compliments, date
+        id, name, type, state, image_url, title, user_id, compliments, date ,code
     </sql>
 
 </mapper>
