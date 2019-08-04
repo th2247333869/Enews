@@ -47,8 +47,24 @@ public class CommdityController extends BaseController {
         return map;
     }
 
-
-
+    /**
+     * @Description:    分页查询推荐
+     * @UpdateUser:     GEBILAOHU
+     * @UpdateDate:
+     * @UpdateRemark:   修改内容
+     * @Version:        2.0
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/getCommditys", method = RequestMethod.POST)
+    public List getCommditys(@RequestBody Map<String,String> data){
+        String currentDate = data.get("currentDate");
+        if(Objects.nonNull(currentDate)||!"".equals(currentDate)){
+            currentDate = commonUtils.getStrNow();
+        }
+        Page page1 = new Page(1,4);
+        List<Map<String,String>>  map= commdityService.getCommmdityPageNotic(page1);
+        return map;
+    }
 
 }
 
