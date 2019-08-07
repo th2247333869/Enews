@@ -73,6 +73,7 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/wxlogin", method = RequestMethod.GET)
     public Map loginWX(@RequestParam String code,@RequestParam String headurl,@RequestParam String nickname
                         ,@RequestParam String sex,@RequestParam String country,@RequestParam String province,@RequestParam String city){
+
         String openid = getWxOpenId(code);
         User user = new User(null,checkGenger(sex),nickname,openid,openid, commonUtils.getNow());
         if(userService.createUserByOpenId(user)== 0){

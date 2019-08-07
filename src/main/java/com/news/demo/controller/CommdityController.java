@@ -58,10 +58,10 @@ public class CommdityController extends BaseController {
     @RequestMapping(value = "/getCommditys", method = RequestMethod.POST)
     public List getCommditys(@RequestBody Map<String,String> data){
         String currentDate = data.get("currentDate");
-        if(Objects.nonNull(currentDate)||!"".equals(currentDate)){
+        if(Objects.nonNull(currentDate)){
             currentDate = commonUtils.getStrNow();
         }
-        Page page1 = new Page(1,4);
+        Page page1 = new Page(Integer.valueOf(data.get("page")),8);
         List<Map<String,String>>  map= commdityService.getCommmdityPageNotic(page1);
         return map;
     }
