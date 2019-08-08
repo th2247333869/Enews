@@ -1,18 +1,23 @@
 package com.news.demo.module.Login;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.news.demo.Utils.OrderCodeFactoryUtils;
 import com.news.demo.Utils.commonUtils;
+import com.news.demo.model.Commdity;
+import com.news.demo.model.MongoDbModel.col;
 import com.news.demo.model.User;
 import com.news.demo.module.BaseController;
 import com.news.demo.resultSet.Result;
 import com.news.demo.resultSet.ResultCode;
 import com.news.demo.Utils.JwtUtils;
+import com.news.demo.service.impl.CommdityServiceImpl;
 import com.news.demo.service.impl.UserServiceImpl;
 import com.nimbusds.jose.JOSEException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,7 +35,8 @@ public class LoginController extends BaseController {
 
     @Autowired
     UserServiceImpl userService;
-
+    @Autowired
+    CommdityServiceImpl commdityService;
     /**
     * @Description:    登录web
     * @UpdateUser:     GEBILAOHU
@@ -72,10 +78,11 @@ public class LoginController extends BaseController {
     @CrossOrigin
     @RequestMapping(value = "/wxlogin", method = RequestMethod.GET)
     public Map loginWX(@RequestParam String code,@RequestParam String headurl,@RequestParam String nickname
-                        ,@RequestParam String sex,@RequestParam String country,@RequestParam String province,@RequestParam String city){
+                        ,@RequestParam String sex,@RequestParam String country,@RequestParam String province,@RequestParam String city
+                            ,@RequestParam String avatarUrl){
 
         String openid = getWxOpenId(code);
-        User user = new User(null,checkGenger(sex),nickname,openid,openid, commonUtils.getNow());
+        User user = new User(null,checkGenger(sex),nickname,openid,openid, commonUtils.getNow(),avatarUrl);
         if(userService.createUserByOpenId(user)== 0){
             return ToMap(new Result(ResultCode.EVER,"插入数据错误",null));
         }else{
@@ -112,8 +119,9 @@ public class LoginController extends BaseController {
      */
     @CrossOrigin
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test() throws Exception{
-        return "测试成功";
+    public List<col> test() throws Exception{
+        Page page1 = new Page(1,4);
+        return commdityService.getCommmdityPageNoticV2(page1);
     }
 
     @CrossOrigin

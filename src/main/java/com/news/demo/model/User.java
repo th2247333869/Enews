@@ -60,15 +60,22 @@ public class User extends Model<User> {
     @TableId(value = "user_deviceId")
     private String deviceId;
 
+    /**
+     * 用户设备标识
+     */
+    @TableId(value = "user_avatarUrl")
+    private String avatarUrl;
+
     public User(){};
 
-    public User(Date birthday, Integer gender, String userName, String userPwd, String deviceId,Date date) {
+    public User(Date birthday, Integer gender, String userName, String userPwd, String deviceId,Date date,String avatarUrl ) {
         this.birthday = birthday;
         this.gender = gender;
         this.userName = userName;
         this.userPwd = userPwd;
         this.deviceId = deviceId;
         this.creatTime = date;
+        this.avatarUrl = avatarUrl;
     }
 
     @Override
@@ -130,5 +137,13 @@ public class User extends Model<User> {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

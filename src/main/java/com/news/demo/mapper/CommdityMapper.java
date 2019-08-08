@@ -31,7 +31,7 @@ public interface CommdityMapper extends BaseMapper<Commdity> {
           *            状态
           * @return
           */
-    @Select("SELECT b.*,u.user_name FROM b_commdity b LEFT JOIN t_user u on b.user_id = " +
+    @Select("SELECT b.*,u.user_name,u.avatar_Url FROM b_commdity b LEFT JOIN t_user u on b.user_id = " +
             "u.user_id WHERE b.state=#{state}")
     List<Map<String,String>> selectCommdityPageNotic(Pagination page, String state);
 

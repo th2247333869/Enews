@@ -3,6 +3,7 @@ package com.news.demo.service;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.news.demo.model.Commdity;
 import com.baomidou.mybatisplus.service.IService;
+import com.news.demo.model.MongoDbModel.col;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,8 @@ import java.util.Map;
 public interface CommdityService extends IService<Commdity> {
 
     public List<Map<String,String>>  getCommmdityPageNotic(Page page);
+
+    public List<col>  getCommmdityPageNoticV2(Page page);
+
+    public Integer saveCommmditysPageNotics(List<Commdity> commdities) throws Exception;
 }
