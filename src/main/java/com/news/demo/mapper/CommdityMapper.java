@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +33,12 @@ public interface CommdityMapper extends BaseMapper<Commdity> {
           * @return
           */
     @Select("SELECT b.*,u.user_name,u.avatar_Url FROM b_commdity b LEFT JOIN t_user u on b.user_id = " +
-            "u.user_id WHERE b.state=#{state}")
-    List<Map<String,String>> selectCommdityPageNotic(Pagination page, String state);
+            "u.user_id WHERE b.state=#{state} and  b.date<STR_TO_DATE(#{date}, '%Y-%m-%d %H:%i:%s') order by b.date desc")
+    List<Map<String,String>> selectCommdityPageNotic(Pagination page, String date,String state);
+
+    @Select("SELECT b.*,u.user_name,u.avatar_Url FROM b_commdity b LEFT JOIN t_user u on b.user_id = " +
+            "u.user_id WHERE b.date>=STR_TO_DATE(#{date}, '%Y-%m-%d %H:%i:%s')  and b.state = #{state} order by b.date desc")
+    List<Map<String,String>> selectCommdityByNowDate(String date, String state);
+
 
 }

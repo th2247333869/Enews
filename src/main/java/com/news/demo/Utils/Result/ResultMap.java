@@ -28,6 +28,24 @@ public class ResultMap {
         return obj;
     }
 
+    public static Object mapToObjectV2(Map<String, String> map, Class<?> beanClass) throws Exception {
+        if (map == null)
+            return null;
+
+        Object obj = beanClass.newInstance();
+
+        BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
+        PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+        for (PropertyDescriptor property : propertyDescriptors) {
+            Method setter = property.getWriteMethod();
+            if (setter != null) {
+                setter.invoke(obj, map.get(property.getName()));
+            }
+        }
+
+        return obj;
+    }
+
     public static Map<String, Object> objectToMap(Object obj) throws Exception {
         Map<String, Object> map = new HashMap();
         for (Field field : obj.getClass().getDeclaredFields()) {

@@ -1,5 +1,6 @@
 package com.news.demo.Utils.MongoDB;
 
+import com.news.demo.Utils.commonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class MongodbUtils {
@@ -37,6 +39,16 @@ public class MongodbUtils {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+
+    public static List<? extends Object> find(Criteria[] criterias,Object object){
+
+        Query query = new Query();
+        for (int i=0;i<criterias.length;i++){
+            query.addCriteria(criterias[i]);
+        }
+        List<? extends Object> resultList = mongodbUtils.mongoTemplate.find(query, object.getClass());
+        return resultList;
+    }
     /**
      * 保存数据对象，集合为数据对象中@Document 注解所配置的collection
      *
@@ -46,6 +58,19 @@ public class MongodbUtils {
     public static void save(Object obj) {
         mongodbUtils.mongoTemplate.save(obj);
     }
+
+    /**
+     * 保存数据对象，集合为数据对象中@Document 注解所配置的collection
+     *
+     * @param objs
+     *  数据对象
+     */
+    public static void saves(List<Object> objs) {
+        for (Object o :objs){
+            mongodbUtils.mongoTemplate.save(o);
+        }
+    }
+
 
     /**
      * 指定集合保存数据对象

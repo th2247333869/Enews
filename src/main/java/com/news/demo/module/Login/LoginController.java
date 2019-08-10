@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.news.demo.Utils.OrderCodeFactoryUtils;
 import com.news.demo.Utils.commonUtils;
 import com.news.demo.model.Commdity;
+import com.news.demo.model.MongoDbModel.CommdityDb;
 import com.news.demo.model.MongoDbModel.col;
 import com.news.demo.model.User;
 import com.news.demo.module.BaseController;
@@ -119,9 +120,9 @@ public class LoginController extends BaseController {
      */
     @CrossOrigin
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public List<col> test() throws Exception{
+    public List<CommdityDb> test() throws Exception{
         Page page1 = new Page(1,4);
-        return commdityService.getCommmdityPageNoticV2(page1);
+        return commdityService.getCommmdityPageNoticV2();
     }
 
     @CrossOrigin

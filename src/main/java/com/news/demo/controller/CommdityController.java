@@ -2,8 +2,10 @@ package com.news.demo.controller;
 
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.news.demo.Utils.Result.ResultMap;
 import com.news.demo.Utils.commonUtils;
 import com.news.demo.model.Commdity;
+import com.news.demo.model.MongoDbModel.CommdityDb;
 import com.news.demo.module.BaseController;
 import com.news.demo.resultSet.Result;
 import com.news.demo.resultSet.ResultCode;
@@ -11,6 +13,7 @@ import com.news.demo.service.impl.CommdityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -61,9 +64,21 @@ public class CommdityController extends BaseController {
         if(Objects.nonNull(currentDate)){
             currentDate = commonUtils.getStrNow();
         }
-        Page page1 = new Page(Integer.valueOf(data.get("page")),8);
+        Page page1 = new Page(Integer.valueOf(data.get("page")),4);
         List<Map<String,String>>  map= commdityService.getCommmdityPageNotic(page1);
         return map;
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/getRecommendCommditys", method = RequestMethod.POST)
+    public List<CommdityDb> getRecommendCommditys(@RequestBody Map<String,String> data){
+        List<CommdityDb>  cdbs = new ArrayList<>();
+        try {
+            cdbs = commdityService.getCommmdityPageNoticV2();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return cdbs;
     }
 
 }
