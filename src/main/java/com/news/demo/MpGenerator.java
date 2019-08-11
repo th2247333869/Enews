@@ -33,7 +33,7 @@ public class MpGenerator {
     //作者
     private static String authorName = "GEBILAOHU";
     //要生成的表名
-    private static String[] tables = {"b_specific_goods"};
+    private static String[] tables = {"b_classification"};
     //table前缀
     private static String prefix = "b_";
 
@@ -41,8 +41,8 @@ public class MpGenerator {
     private static DbType dbType = DbType.MYSQL;
     //数据库配置四要素
     private static String driverName = "com.mysql.cj.jdbc.Driver";
-    private static String url = "jdbc:mysql://106.13.119.92:3306/testDB";
-    private static String username = "test";
+    private static String url = "jdbc:mysql://106.13.119.92:3306/Enews";
+    private static String username = "root";
     private static String password = "123456";
 
 

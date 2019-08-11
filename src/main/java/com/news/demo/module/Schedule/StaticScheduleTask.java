@@ -31,7 +31,7 @@ public class StaticScheduleTask {
     @Autowired
     private CommdityMapper commdityMapper;
 
-    //1.添加定时任务
+    ////1.添加定时任务
     @Scheduled(cron = "0 0 2 * * ?")//凌晨两点执行
     //@Scheduled(cron = "0/10 * * * * ?")
     private void configureTasks1() {
